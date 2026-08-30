@@ -35,13 +35,19 @@ works across a boundary:
   its `save_preference` tool applies them to the canvas *and* writes them to Tether.
 - **DevForge** (consumer) — a project scaffolder that has never met you. Its form has no theme
   picker, no language selector, no density setting. It calls `create_project`, which asks Tether
-  what you prefer, and generates a project configured as TypeScript / Dark / Compact.
+  what you prefer, and configures six things from the answer: language, theme, layout density,
+  framework, package manager, and styling — down to the lock file and the install command.
 - **Tether Control Plane** — every memory with its source, the tool that wrote it, tags,
-  confidence, and time. Inspect, edit, or permanently delete any of it.
+  confidence, and time. Inspect, edit, add, or permanently delete any of it.
 
 The moment that matters: delete the TypeScript memory in Tether, scaffold again in DevForge, and
-the language falls back to the JavaScript default. The memory is genuinely driving the output —
-not a hardcoded demo path.
+the language falls back to the JavaScript default while the others hold. The memory is genuinely
+driving the output — not a hardcoded demo path.
+
+None of this is limited to fixed toggles. The control plane has a **Teach Tether something** panel
+that accepts arbitrary context in your own words, through the same path as `store_context`. Say
+*"I prefer pnpm over npm"* or *"I prefer Tailwind CSS for styling"* and the next scaffold picks it
+up, lock file and install command included.
 
 ## How WebMCP is used
 
@@ -71,7 +77,8 @@ would misrepresent the protocol.
 
 ## Human + agent collaboration
 
-The agent captures and retrieves; the person governs. Every memory shows where it came from and
+The agent captures and retrieves; the person governs — and the person can author memories directly,
+through the same API the agent uses. Every memory shows where it came from and
 which tool created it. Retrieval is explained rather than asserted — DevForge displays the query it
 ran, the memories that matched, and *why* each one matched, with a "Use these / Ignore" control
 before anything is applied. Deletion is immediate and global, with no archive table and no
@@ -142,4 +149,4 @@ participating experience can build on, with the person holding the keys.
 - [x] MIT license detectable on the repo page
 - [ ] YouTube video under 3 minutes, public, tested in a private window
 - [x] Screenshots captured (see `public/screenshots/`) — re-shoot if the UI changes
-- [ ] Description proofread against current behavior — no claim the code cannot back
+- [x] Description proofread against current behavior — no claim the code cannot back
