@@ -65,7 +65,8 @@ export const TOOL_CATALOG: CatalogTool[] = [
   {
     name: "create_project",
     surface: "DevForge",
-    purpose: "Scaffold a project configured from the user's stored preferences.",
+    purpose:
+      "Scaffold a project configured from stored preferences: language, theme, density, framework, package manager, styling.",
     input: "{ name?, use_stored_context? }",
     output: "{ project, config, sourceMemories }",
   },

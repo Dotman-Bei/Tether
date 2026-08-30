@@ -35,7 +35,7 @@ This repository ships three real surfaces sharing one memory layer:
 
 | Surface | Route | Role |
 | --- | --- | --- |
-| **Tether Control Plane** | `/dashboard` | Inspect, search, edit, and permanently delete every memory |
+| **Tether Control Plane** | `/dashboard` | Inspect, search, edit, add, and permanently delete every memory |
 | **DesignLab** | `/designlab` | Context **producer** — a design studio that teaches Tether your preferences |
 | **DevForge** | `/devforge` | Context **consumer** — a scaffolder that configures a project from them |
 
@@ -160,6 +160,11 @@ type Memory = {
 ```
 
 ### Retrieval
+
+Anything you teach Tether in your own words is fair game: the dashboard's **Teach Tether
+something** panel writes arbitrary context through the same path as `store_context`, and DevForge
+applies whatever it recognises. Saying *"I prefer pnpm over npm"* or *"I prefer Tailwind CSS for
+styling"* is enough for the next scaffold to pick it up.
 
 Lexical scoring in [`src/lib/match.ts`](src/lib/match.ts): tag hits weigh most, then content-word
 overlap, then a category-intent nudge, with confidence only breaking ties. Deliberately not

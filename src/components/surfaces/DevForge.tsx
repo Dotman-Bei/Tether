@@ -13,6 +13,7 @@ import {
   DEFAULT_CONFIG,
   deriveConfig,
   fileTree,
+  installCommand,
   type ProjectConfig,
 } from "@/lib/scaffold";
 import { toolError, toolResult, type ToolDefinition } from "@/lib/webmcp";
@@ -22,7 +23,24 @@ import { WebMCPBadge } from "./WebMCPBadge";
 
 const SURFACE = "DevForge";
 const DEMO_PROMPT = "Create a starter project for me.";
-const RETRIEVAL_QUERY = "preferences for creating a new project";
+const RETRIEVAL_QUERY =
+  "preferences for creating a new project: language, theme, layout, framework, package manager, styling";
+
+/** Human-readable list of only the fields Tether actually decided. */
+function appliedLines(config: ProjectConfig): string {
+  const labels: Array<[keyof ProjectConfig & string, string]> = [
+    ["language", "Language"],
+    ["theme", "Theme"],
+    ["density", "Layout"],
+    ["framework", "Framework"],
+    ["packageManager", "Package manager"],
+    ["styling", "Styling"],
+  ];
+  return labels
+    .filter(([field]) => config.provenance[field as keyof typeof config.provenance])
+    .map(([field, label]) => `\u2022 ${label}: ${String(config[field])}`)
+    .join("\n");
+}
 
 type Scaffold = {
   name: string;
@@ -177,7 +195,7 @@ export function DevForge({ embedded = false }: { embedded?: boolean }) {
       {
         name: "create_project",
         description:
-          "Generate a starter project in DevForge. Retrieves the user's preferences from Tether first and configures language, theme, and layout density from them, so the user never re-enters what they already taught another site.",
+          "Generate a starter project in DevForge. Retrieves the user's preferences from Tether first and configures language, theme, layout density, framework, package manager, and styling from them, so the user never re-enters what they already taught another site.",
         inputSchema: {
           type: "object",
           properties: {
@@ -207,7 +225,7 @@ export function DevForge({ embedded = false }: { embedded?: boolean }) {
                 "tool",
                 results.length > 0
                   ? `Applied ${appliedCount(config)} preferences from Tether:\n` +
-                      `• Language: ${config.language}\n• Theme: ${config.theme}\n• Layout: ${config.density}`
+                      appliedLines(config)
                   : "No stored context. Scaffolded with DevForge defaults.",
                 "create_project",
               ),
@@ -215,8 +233,8 @@ export function DevForge({ embedded = false }: { embedded?: boolean }) {
 
             return toolResult(
               results.length > 0
-                ? `Created "${name}" configured from ${results.length} Tether ${results.length === 1 ? "memory" : "memories"}: ` +
-                    `${config.language}, ${config.theme} UI, ${config.density} layout. The user did not re-enter any of this.`
+                ? `Created "${name}" configured from ${results.length} Tether ${results.length === 1 ? "memory" : "memories"}. ` +
+                    `Applied ${appliedCount(config)} preferences:\n${appliedLines(config)}\nThe user did not re-enter any of this.`
                 : `Created "${name}" with DevForge defaults; Tether held no relevant context.`,
               { project: name, config, sourceMemories: results },
             );
@@ -301,7 +319,7 @@ export function DevForge({ embedded = false }: { embedded?: boolean }) {
           "tool",
           results.length > 0
             ? `Applied ${appliedCount(config)} preferences retrieved from Tether:\n` +
-                `• Language: ${config.language}\n• Theme: ${config.theme}\n• Layout: ${config.density}`
+                appliedLines(config)
             : "Tether has no memories yet. Teach it something in DesignLab first.",
           "create_project",
         ),
@@ -520,6 +538,33 @@ export function DevForge({ embedded = false }: { embedded?: boolean }) {
                 from={config.provenance.density}
                 applied={Boolean(config.provenance.density)}
               />
+              <ConfigRow
+                label="Framework"
+                value={config.framework}
+                from={config.provenance.framework}
+                applied={Boolean(config.provenance.framework)}
+              />
+              <ConfigRow
+                label="Package manager"
+                value={config.packageManager}
+                from={config.provenance.packageManager}
+                applied={Boolean(config.provenance.packageManager)}
+              />
+              <ConfigRow
+                label="Styling"
+                value={config.styling}
+                from={config.provenance.styling}
+                applied={Boolean(config.provenance.styling)}
+              />
+            </div>
+
+            <div className="mt-4 rounded-lg border border-[#1F1F1F] bg-[#080808] px-3 py-2.5">
+              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#52525B]">
+                Install
+              </p>
+              <code className="mt-1 block font-mono text-xs text-signal-green">
+                $ {installCommand(config)}
+              </code>
             </div>
 
             <pre className="mt-4 overflow-x-auto rounded-lg border border-[#1F1F1F] bg-[#080808] p-3 font-mono text-[11px] leading-relaxed text-[#71717A]">

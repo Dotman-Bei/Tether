@@ -19,6 +19,7 @@ import {
 import { CATEGORIES, type Category, type Memory } from "@/lib/types";
 import { toolError, toolResult, type ToolDefinition } from "@/lib/webmcp";
 
+import { AddMemoryPanel } from "./AddMemoryPanel";
 import { MemoryCard } from "./MemoryCard";
 import { MemoryDrawer } from "./MemoryDrawer";
 import { WebMCPBadge } from "./WebMCPBadge";
@@ -456,6 +457,11 @@ export function TetherControlPlane({ embedded = false }: { embedded?: boolean })
           Tether couldn&apos;t reach the memory layer. {error}
         </p>
       ) : null}
+
+      {/* Human-authored memories -------------------------------------- */}
+      <div className="mt-6">
+        <AddMemoryPanel onAdded={refresh} />
+      </div>
 
       {/* Feed --------------------------------------------------------- */}
       <div className="mt-6">
