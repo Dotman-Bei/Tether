@@ -15,7 +15,7 @@
     /* Hero & accent */
     --accent-orange-primary: #ff3e14;
     --accent-orange-hover: #e63510;
-    /* Same hue, stepped down in lightness and chroma — for large orange fills,
+    /* Same hue, stepped down in lightness and chroma, for large orange fills,
        where the full-brightness accent vibrates. Small accents keep -primary. */
     --accent-orange-surface: #ec3c17;
     --accent-orange-dim: rgba(255, 62, 20, 0.12);
@@ -86,7 +86,7 @@
 }
 
 @layer components {
-  /* Halftone dot canvas — the base texture behind every dark section. */
+  /* Halftone dot canvas: the base texture behind every dark section. */
   .bg-grid-pattern {
     background-color: var(--bg-canvas);
     background-image: radial-gradient(#1a1a1a 1px, transparent 1px);

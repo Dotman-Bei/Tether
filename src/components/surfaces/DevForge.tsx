@@ -217,7 +217,7 @@ export function DevForge({ embedded = false }: { embedded?: boolean }) {
               results.length > 0
                 ? `Created "${name}" configured from ${results.length} Tether ${results.length === 1 ? "memory" : "memories"}: ` +
                     `${config.language}, ${config.theme} UI, ${config.density} layout. The user did not re-enter any of this.`
-                : `Created "${name}" with DevForge defaults — Tether held no relevant context.`,
+                : `Created "${name}" with DevForge defaults; Tether held no relevant context.`,
               { project: name, config, sourceMemories: results },
             );
           } catch (cause) {
@@ -266,7 +266,7 @@ export function DevForge({ embedded = false }: { embedded?: boolean }) {
                 "tool",
                 apply
                   ? `Re-applied ${appliedCount(config)} preferences from Tether.`
-                  : "Reverted to DevForge defaults — Tether context ignored.",
+                  : "Reverted to DevForge defaults; Tether context ignored.",
                 "apply_preferences",
               ),
             );
@@ -360,7 +360,7 @@ export function DevForge({ embedded = false }: { embedded?: boolean }) {
           </div>
           <p className="mt-2 max-w-xl text-sm text-[#A1A1AA]">
             A project scaffolder that has never met you. It asks Tether what you prefer before it
-            generates anything — so you never re-enter what DesignLab already learned.
+            generates anything, so you never re-enter what DesignLab already learned.
           </p>
         </div>
         <WebMCPBadge status={status} surface="DevForge" />
@@ -388,7 +388,7 @@ export function DevForge({ embedded = false }: { embedded?: boolean }) {
             </p>
           </Panel>
 
-          {/* Retrieval banner — the aha moment -------------------------- */}
+          {/* Retrieval banner: the aha moment --------------------------- */}
           {retrieved !== null ? (
             <div
               className={cn(
@@ -449,7 +449,7 @@ export function DevForge({ embedded = false }: { embedded?: boolean }) {
               ) : (
                 <p className="text-sm text-signal-amber">
                   Tether has no memories relevant to a new project yet. Teach it something in
-                  DesignLab first — DevForge will continue with defaults until then.
+                  DesignLab first; DevForge will continue with defaults until then.
                 </p>
               )}
             </div>

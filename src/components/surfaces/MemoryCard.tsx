@@ -100,7 +100,7 @@ export function MemoryCard({
         </span>
       </div>
 
-      {/* React escapes this by default — memory content is never injected as HTML. */}
+      {/* React escapes this by default; memory content is never injected as HTML. */}
       <p className="mt-4 text-[15px] font-medium leading-relaxed text-white">
         &ldquo;{memory.content}&rdquo;
       </p>

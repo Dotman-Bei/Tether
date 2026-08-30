@@ -2,7 +2,7 @@ import type { Snippet } from "@/components/landing/CodeViewer";
 
 /**
  * Real excerpts from this repository, shown in the Architecture section.
- * Keep these in sync with the files they name — they are the proof, not decor.
+ * Keep these in sync with the files they name: they are the proof, not decor.
  */
 export const SNIPPETS: Snippet[] = [
   {

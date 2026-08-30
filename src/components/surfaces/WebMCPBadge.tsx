@@ -11,7 +11,7 @@ import type { WebMCPStatus } from "@/hooks/useWebMCP";
  * Honest environment reporting.
  *
  * When a model context exists we name where we found it and list the tools we
- * registered. When it does not, we say so plainly — the build spec forbids
+ * registered. When it does not, we say so plainly; the build spec forbids
  * faking tool calls, so the UI must never imply an agent is present.
  */
 export function WebMCPBadge({

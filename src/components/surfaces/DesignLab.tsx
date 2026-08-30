@@ -252,7 +252,7 @@ export function DesignLab({ embedded = false }: { embedded?: boolean }) {
                 "tool",
                 stored.length > 0
                   ? `${stored.length} of ${total} preferences stored:\n${stored.map((item) => `• ${item}`).join("\n")}`
-                  : "All of these preferences were already in Tether — nothing duplicated.",
+                  : "All of these preferences were already in Tether; nothing duplicated.",
                 "save_preference",
               ),
             );
@@ -336,7 +336,7 @@ export function DesignLab({ embedded = false }: { embedded?: boolean }) {
           "tool",
           stored.length > 0
             ? `${stored.length} of ${total} preferences stored in Tether:\n${stored.map((item) => `• ${item}`).join("\n")}`
-            : "All three preferences were already in Tether — nothing duplicated.",
+            : "All three preferences were already in Tether; nothing duplicated.",
           "save_preference",
         ),
       );
@@ -392,7 +392,7 @@ export function DesignLab({ embedded = false }: { embedded?: boolean }) {
             </span>
           </div>
           <p className="mt-2 max-w-xl text-sm text-[#A1A1AA]">
-            A small design studio. Everything you set here is real product state — and DesignLab
+            A small design studio. Everything you set here is real product state, and DesignLab
             writes it to Tether through its own WebMCP tool so other sites can use it.
           </p>
         </div>

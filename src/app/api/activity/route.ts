@@ -34,7 +34,7 @@ export async function POST(request: Request) {
   });
 }
 
-/** DELETE /api/activity — reset the whole sandbox for a clean demo take. */
+/** DELETE /api/activity resets the whole sandbox for a clean demo take. */
 export async function DELETE() {
   return guard(async () => {
     const userId = await getUserId();

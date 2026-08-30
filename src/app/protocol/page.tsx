@@ -41,7 +41,7 @@ const PRIVACY = [
   {
     icon: <Lock className="h-4 w-4 text-accent-orange" aria-hidden />,
     title: "Session-scoped memories",
-    body: "Each visitor gets an opaque random id in an httpOnly first-party cookie. There are no accounts and no personal data — one visitor's demo can never appear in another's feed.",
+    body: "Each visitor gets an opaque random id in an httpOnly first-party cookie. There are no accounts and no personal data: one visitor's demo can never appear in another's feed.",
   },
   {
     icon: <ShieldCheck className="h-4 w-4 text-accent-orange" aria-hidden />,

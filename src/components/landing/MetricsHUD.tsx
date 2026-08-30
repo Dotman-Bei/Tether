@@ -4,7 +4,7 @@ const METRICS = [
   {
     label: "Tool discovery",
     value: "In-page",
-    note: "Agents read tools straight off the page's model context — no broker hop.",
+    note: "Agents read tools straight off the page's model context, with no broker hop.",
   },
   {
     label: "Human control",

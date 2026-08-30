@@ -1,4 +1,4 @@
--- Tether — shared memory layer for the agent-native web
+-- Tether: shared memory layer for the agent-native web
 -- Run this in the Supabase SQL editor (or `supabase db push`) before setting
 -- NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.
 --
@@ -35,7 +35,7 @@ create index if not exists memories_user_category_idx
   on public.memories (user_id, category);
 
 -- ---------------------------------------------------------------------------
--- activity_events — the WebMCP telemetry stream
+-- activity_events: the WebMCP telemetry stream
 -- ---------------------------------------------------------------------------
 
 create table if not exists public.activity_events (

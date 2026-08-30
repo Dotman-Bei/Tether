@@ -19,7 +19,7 @@ export async function GET(_request: Request, { params }: Params) {
   });
 }
 
-/** PATCH /api/memory/:id — refine an existing memory in place. */
+/** PATCH /api/memory/:id refines an existing memory in place. */
 export async function PATCH(request: Request, { params }: Params) {
   return guard(async () => {
     const { id } = await params;
@@ -52,7 +52,7 @@ export async function PATCH(request: Request, { params }: Params) {
   });
 }
 
-/** DELETE /api/memory/:id — the human control path. Always available. */
+/** DELETE /api/memory/:id is the human control path. Always available. */
 export async function DELETE(_request: Request, { params }: Params) {
   return guard(async () => {
     const { id } = await params;
@@ -66,7 +66,7 @@ export async function DELETE(_request: Request, { params }: Params) {
       userId,
       channel: "TETHER",
       label: "memory deleted",
-      detail: `User removed "${memory.content}" — no longer retrievable by any site`,
+      detail: `User removed "${memory.content}"; no longer retrievable by any site`,
       origin: "manual",
       status: "ok",
     });

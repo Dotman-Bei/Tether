@@ -7,7 +7,7 @@ import { CATEGORIES, createMemorySchema, type Category } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
-/** GET /api/memory — list every memory for the current demo user. */
+/** GET /api/memory lists every memory for the current demo user. */
 export async function GET(request: Request) {
   return guard(async () => {
     const store = getStore();
@@ -30,7 +30,7 @@ export async function GET(request: Request) {
   });
 }
 
-/** POST /api/memory — persist one structured memory. */
+/** POST /api/memory persists one structured memory. */
 export async function POST(request: Request) {
   return guard(async () => {
     const body = await readJson(request);
@@ -52,7 +52,7 @@ export async function POST(request: Request) {
         userId,
         channel: "TETHER",
         label: "store_context",
-        detail: `Duplicate ignored — already knew "${duplicate.content}"`,
+        detail: `Duplicate ignored; already knew "${duplicate.content}"`,
         origin: "system",
         status: "info",
       });

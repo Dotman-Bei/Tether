@@ -86,7 +86,7 @@ export function fileTree(name: string, config: ProjectConfig): string[] {
   ];
 }
 
-/** The generated theme token file — visibly built from the retrieved values. */
+/** The generated theme token file: visibly built from the retrieved values. */
 export function codePreview(config: ProjectConfig): string {
   const typed = config.language === "TypeScript";
   const spacing = config.density === "Compact" ? "4" : "8";

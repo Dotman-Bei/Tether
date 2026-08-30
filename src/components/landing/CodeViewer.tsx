@@ -7,7 +7,7 @@ import { cn } from "@/lib/cn";
 
 export type Snippet = { id: string; label: string; file: string; code: string };
 
-/** Minimal token painter — enough colour to read, no syntax-highlighter dependency. */
+/** Minimal token painter: enough colour to read, no syntax-highlighter dependency. */
 function highlight(line: string): React.ReactNode {
   if (/^\s*(\/\/|\/\*|\*)/.test(line)) {
     return <span className="text-[#3F3F46]">{line}</span>;
@@ -48,7 +48,7 @@ export function CodeViewer({ snippets, className }: { snippets: Snippet[]; class
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
     } catch {
-      /* clipboard unavailable — code is still selectable on screen */
+      /* clipboard unavailable; code is still selectable on screen */
     }
   };
 

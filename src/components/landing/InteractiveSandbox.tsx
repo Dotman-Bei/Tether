@@ -23,7 +23,7 @@ type TabId = (typeof TABS)[number]["id"];
  * The whole cross-site workflow in one viewport.
  *
  * Only the active surface is mounted, so the tools registered with the page's
- * model context are exactly the tools of the site you are looking at — the same
+ * model context are exactly the tools of the site you are looking at: the same
  * thing that happens when you navigate to that site's own route.
  */
 export function InteractiveSandbox() {
@@ -37,7 +37,7 @@ export function InteractiveSandbox() {
         glyph="⎔"
         tone="orange"
         title="Teach one site. Watch another use it."
-        subtitle="Three real surfaces sharing one memory layer. Store a preference in DesignLab, switch tabs, and DevForge configures a project from it — with no preferences entered there."
+        subtitle="Three real surfaces sharing one memory layer. Store a preference in DesignLab, switch tabs, and DevForge configures a project from it, with no preferences entered there."
       />
 
       <div className="mt-10 flex flex-col items-center gap-3">

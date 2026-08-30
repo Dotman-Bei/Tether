@@ -6,7 +6,7 @@ export const TETHER_UID_COOKIE = "tether_uid";
  * Every visitor gets their own isolated memory sandbox.
  *
  * The security baseline in the build spec calls for demo memories scoped to a
- * single demo user/session — this is that scope. It is an opaque random id in
+ * single demo user/session; this is that scope. It is an opaque random id in
  * a first-party cookie: no accounts, no PII, and one judge's demo can never
  * show up in another's feed.
  */

@@ -39,7 +39,7 @@ type ModelContext = {
 
 export type ModelContextHandle = {
   context: ModelContext;
-  /** Where we found it — shown in the UI so the environment is never a mystery. */
+  /** Where we found it, shown in the UI so the environment is never a mystery. */
   host: "navigator.modelContext" | "window.modelContext" | "document.modelContext";
   api: "registerTool" | "provideContext";
 };

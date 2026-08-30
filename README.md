@@ -208,12 +208,30 @@ To reproduce the recorded demo from a clean state:
 
 ## Screenshots
 
-Capture these from a running instance for the submission:
+### 1. Tether memory feed
 
-1. **Tether memory feed** — `/dashboard` with three memories stored.
-2. **DesignLab storing context** — `/designlab` right after `save_preference`.
-3. **DevForge retrieving context** — `/devforge` showing the retrieval banner and generated config.
-4. **WebMCP tool registration** — `/protocol`, tool catalog and real `registerTool` code.
+Three memories stored by DesignLab, each showing source, tags, confidence, and time.
+
+![Tether memory feed](public/screenshots/1-tether-memory-feed.png)
+
+### 2. DesignLab storing context
+
+`save_preference` applies the settings locally and writes them to Tether in one call.
+
+![DesignLab storing context](public/screenshots/2-designlab-storing.png)
+
+### 3. DevForge retrieving context — the "aha" moment
+
+DevForge has no theme, language, or density control on its form. It retrieves them from Tether
+instead, and every generated value traces back to the memory that produced it.
+
+![DevForge retrieving context](public/screenshots/3-devforge-retrieving.png)
+
+### 4. WebMCP tool registration
+
+The nine tools registered across the three surfaces, with the real `registerTool` adapter code.
+
+![WebMCP tool catalog and registration code](public/screenshots/4-webmcp-tools.png)
 
 ## Tech stack
 

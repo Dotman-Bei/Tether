@@ -25,7 +25,7 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
  *
  * Lineage is the trust surface: which site wrote this, through which tool, at
  * what time, with what confidence. It is also where the user edits or removes
- * the record — the "human decides what stays" moment in the demo.
+ * the record: the "human decides what stays" moment in the demo.
  */
 export function MemoryDrawer({
   memory,
@@ -153,7 +153,7 @@ export function MemoryDrawer({
             </Row>
             <Row label="Category">{memory.category}</Row>
             <Row label="Tags">
-              {memory.tags.length > 0 ? memory.tags.map((tag) => `#${tag}`).join(" ") : "—"}
+              {memory.tags.length > 0 ? memory.tags.map((tag) => `#${tag}`).join(" ") : "None"}
             </Row>
             <Row label="Confidence">
               <ConfidenceMeter value={memory.confidence} />
@@ -172,7 +172,7 @@ export function MemoryDrawer({
               Any participating site that calls{" "}
               <code className="font-mono text-accent-orange">retrieve_context</code> from your
               browser session can read this memory. Tether only exposes memories you have allowed to
-              persist — deleting it here removes it everywhere, immediately.
+              persist; deleting it here removes it everywhere, immediately.
             </p>
           </div>
 
@@ -185,8 +185,8 @@ export function MemoryDrawer({
             )}
           >
             {confidenceLabel(memory.confidence) === "HIGH"
-              ? "High confidence — stated directly and unambiguously by the user."
-              : "Medium confidence — inferred from context; verify before relying on it."}
+              ? "High confidence: stated directly and unambiguously by the user."
+              : "Medium confidence: inferred from context; verify before relying on it."}
           </div>
         </div>
 

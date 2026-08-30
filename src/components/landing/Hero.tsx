@@ -66,7 +66,7 @@ export function Hero() {
 
             <p className="mt-6 max-w-2xl text-lg font-medium leading-relaxed text-black/85 sm:text-xl">
               A shared persistence layer for the agent-native web. Participating websites expose
-              WebMCP tools that save, retrieve, and update context across sessions — while humans
+              WebMCP tools that save, retrieve, and update context across sessions, while humans
               control what persists.
             </p>
 

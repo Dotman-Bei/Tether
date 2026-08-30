@@ -18,7 +18,7 @@ export type ConsoleLine = {
  *
  * Two paths, always distinguishable:
  *   1. A real agent in a WebMCP browser calls the registered tools itself. The
- *      user types the prompt into their agent sidebar — we show it to copy.
+ *      user types the prompt into their agent sidebar; we show it to copy.
  *   2. No agent present: the button runs the identical tool handler and every
  *      resulting log line is stamped MANUAL. We never draw a fake agent turn.
  */
@@ -51,7 +51,7 @@ export function AgentConsole({
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
     } catch {
-      /* clipboard permission denied — the prompt is still on screen to read */
+      /* clipboard permission denied; the prompt is still on screen to read */
     }
   };
 
@@ -82,7 +82,7 @@ export function AgentConsole({
           <p className="mt-2 text-xs leading-relaxed text-[#52525B]">
             {supported
               ? `An agent in this browser can already see ${surface}'s tools. Ask it, and it will call them itself.`
-              : "No agent detected in this browser. The button below runs the exact same tool handler an agent would call — every log line is stamped MANUAL."}
+              : "No agent detected in this browser. The button below runs the exact same tool handler an agent would call; every log line is stamped MANUAL."}
           </p>
         </div>
 

@@ -161,7 +161,7 @@ export function TelemetryStream({
                 >
                   {event.label}
                 </span>
-                {event.detail ? <span className="text-[#71717A]">— {event.detail}</span> : null}
+                {event.detail ? <span className="text-[#71717A]">· {event.detail}</span> : null}
                 <span className="shrink-0 text-[10px] uppercase tracking-[0.1em] text-[#3F3F46]">
                   {ORIGIN_LABEL[event.origin]}
                 </span>

@@ -4,7 +4,7 @@ const CAPABILITIES = [
   {
     id: "01",
     title: "Multi-site interoperability",
-    body: "Context written by one participating WebMCP site is readable by the next through a single shared contract — no bespoke integration per pair of sites.",
+    body: "Context written by one participating WebMCP site is readable by the next through a single shared contract, with no bespoke integration per pair of sites.",
   },
   {
     id: "02",
@@ -19,7 +19,7 @@ const CAPABILITIES = [
   {
     id: "04",
     title: "Structured semantic storage",
-    body: "Category, tags, and a confidence score — not an undifferentiated text dump. Structure is what makes retrieval explainable rather than magical.",
+    body: "Category, tags, and a confidence score, not an undifferentiated text dump. Structure is what makes retrieval explainable rather than magical.",
   },
   {
     id: "05",

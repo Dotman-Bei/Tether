@@ -2,7 +2,7 @@ import { z } from "zod";
 
 /**
  * A Tether memory is a single structured fact about the user that a
- * participating WebMCP site chose to persist. Structure — not raw chat text —
+ * participating WebMCP site chose to persist. Structure, not raw chat text,
  * is what lets a second site retrieve and apply it without the user repeating
  * themselves.
  */
@@ -47,7 +47,7 @@ export type ActivityEvent = {
 };
 
 /* ------------------------------------------------------------------ */
-/* Validation schemas — every tool input and API body passes through   */
+/* Validation schemas: every tool input and API body passes through    */
 /* one of these before it reaches the store.                           */
 /* ------------------------------------------------------------------ */
 

@@ -28,7 +28,7 @@ export function broadcast(message: SyncMessage) {
   try {
     getChannel()?.postMessage(message);
   } catch {
-    /* a missing channel is never fatal — polling covers it */
+    /* a missing channel is never fatal; polling covers it */
   }
 }
 
@@ -93,7 +93,7 @@ async function json<T>(response: Response): Promise<T> {
     const detail = issues
       .map((issue) => (issue.path ? `${issue.path}: ${issue.message}` : issue.message))
       .join("; ");
-    throw new Error(detail ? `${base} — ${detail}` : base);
+    throw new Error(detail ? `${base}: ${detail}` : base);
   }
   return body as T;
 }

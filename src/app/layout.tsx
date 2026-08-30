@@ -24,14 +24,14 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Tether — Teach once. Carry forward.",
+    default: "Tether · Teach once. Carry forward.",
     template: "%s · Tether",
   },
   description:
-    "Tether is a shared memory layer for the agent-native web. Participating websites expose WebMCP tools that save, retrieve, and update user context — while humans control what persists.",
+    "Tether is a shared memory layer for the agent-native web. Participating websites expose WebMCP tools that save, retrieve, and update user context, while humans control what persists.",
   applicationName: "Tether",
   openGraph: {
-    title: "Tether — Teach once. Carry forward.",
+    title: "Tether · Teach once. Carry forward.",
     description:
       "A shared memory layer for the agent-native web, built on WebMCP tools.",
     type: "website",

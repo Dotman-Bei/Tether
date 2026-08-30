@@ -34,7 +34,7 @@ export default function DevForgePage() {
                 The agent remembered. You decide what it keeps.
               </p>
               <p className="mt-1 text-sm text-[#A1A1AA]">
-                Open the control plane and delete a memory — then scaffold again and watch that
+                Open the control plane and delete a memory, then scaffold again and watch that
                 setting fall back to a default.
               </p>
             </div>

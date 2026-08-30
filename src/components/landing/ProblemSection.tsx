@@ -51,7 +51,7 @@ function RadarHUD() {
           <line x1="228" y1="124" x2="228" y2="134" stroke="#FF3E14" strokeWidth="1.5" />
         </g>
 
-        {/* Faint secondary contacts — other lost sessions. */}
+        {/* Faint secondary contacts: other lost sessions. */}
         <circle cx="106" cy="222" r="2.5" fill="#52525B" />
         <circle cx="140" cy="96" r="2" fill="#3F3F46" />
         <circle cx="246" cy="238" r="2" fill="#3F3F46" />
@@ -114,7 +114,7 @@ export function ProblemSection() {
             Agents don&apos;t have memory. And you&apos;re stuck repeating yourself.
           </>
         }
-        subtitle="Context dies at the tab boundary. The user becomes the integration layer — re-typing the same four facts into every tool they touch."
+        subtitle="Context dies at the tab boundary. The user becomes the integration layer, re-typing the same four facts into every tool they touch."
       />
 
       <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-12">

@@ -13,7 +13,7 @@ const FAQS = [
   },
   {
     q: "How does Tether use WebMCP?",
-    a: "Each participating site registers page-provided tools on the browser's model context — store_context, retrieve_context, save_preference, create_project, and so on. An agent discovers those tools the way it discovers any other page capability, and calls them during ordinary user interactions.",
+    a: "Each participating site registers page-provided tools on the browser's model context: store_context, retrieve_context, save_preference, create_project, and so on. An agent discovers those tools the way it discovers any other page capability, and calls them during ordinary user interactions.",
   },
   {
     q: "Does WebMCP carry memory automatically between sites?",
@@ -21,7 +21,7 @@ const FAQS = [
   },
   {
     q: "How does human control work?",
-    a: "Open the Tether control plane at any time to inspect every stored memory: which site wrote it, through which tool, when, with what confidence. Edit or permanently delete any record. Deletion is immediate and global — no participating site can retrieve it afterwards.",
+    a: "Open the Tether control plane at any time to inspect every stored memory: which site wrote it, through which tool, when, with what confidence. Edit or permanently delete any record. Deletion is immediate and global: no participating site can retrieve it afterwards.",
   },
   {
     q: "What happens in a browser without WebMCP?",
@@ -29,7 +29,7 @@ const FAQS = [
   },
   {
     q: "What is the stack?",
-    a: "Next.js with TypeScript, Tailwind CSS, Zod for validating every tool input, and Supabase Postgres for storage — with a zero-config in-memory driver so a fresh clone runs with no environment variables at all.",
+    a: "Next.js with TypeScript, Tailwind CSS, Zod for validating every tool input, and Supabase Postgres for storage, with a zero-config in-memory driver so a fresh clone runs with no environment variables at all.",
   },
 ];
 

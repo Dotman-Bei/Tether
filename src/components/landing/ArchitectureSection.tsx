@@ -88,7 +88,7 @@ export function ArchitectureSection() {
         <FlowNode
           index="03"
           title="Human governance plane"
-          subtitle="The user sees every memory, its source lineage, and its confidence — and can delete any of it permanently, at any time."
+          subtitle="The user sees every memory, its source lineage, and its confidence. They can delete any of it permanently, at any time."
           icon={<ShieldCheck className="h-4 w-4 text-signal-green" aria-hidden />}
           accent="#10B981"
         />
@@ -98,7 +98,7 @@ export function ArchitectureSection() {
         <p className="text-sm leading-relaxed text-[#A1A1AA]">
           <span className="font-semibold text-white">To be precise:</span> WebMCP does not carry
           memory between sites on its own. It is the interface that lets each page hand an agent
-          real tools. Tether is the shared backplane those tools read from and write to — which is
+          real tools. Tether is the shared backplane those tools read from and write to, which is
           what makes context earned on one site useful on the next.
         </p>
       </Panel>

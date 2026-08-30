@@ -331,7 +331,7 @@ export function TetherControlPlane({ embedded = false }: { embedded?: boolean })
         origin: "manual",
       });
       await deleteMemory(pendingDelete.id);
-      setBanner(`Removed "${pendingDelete.content}" — participating sites can no longer read it.`);
+      setBanner(`Removed "${pendingDelete.content}"; participating sites can no longer read it.`);
       setInspecting(null);
       await refresh();
     } catch (cause) {
@@ -510,7 +510,7 @@ export function TetherControlPlane({ embedded = false }: { embedded?: boolean })
         <p className="text-xs leading-relaxed text-[#A1A1AA]">
           Tether only exposes memories you have allowed participating sites to use. Every record
           shows the site that wrote it, the tool that created it, and when. Deleting a memory
-          removes it from every site immediately — there is no shadow copy.
+          removes it from every site immediately; there is no shadow copy.
         </p>
       </Panel>
 
@@ -583,7 +583,7 @@ function EmptyState() {
       </h3>
       <p className="mt-2 max-w-sm text-sm leading-relaxed text-[#A1A1AA]">
         Teach Tether something useful from a participating site. Open DesignLab and ask the agent to
-        remember a preference — it will appear here the moment the tool call lands.
+        remember a preference, and it will appear here the moment the tool call lands.
       </p>
       <a href="/designlab" className="mt-6">
         <Button variant="primary" size="md">

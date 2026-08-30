@@ -24,7 +24,7 @@ export type WebMCPStatus = {
  * Register a surface's WebMCP tools for the lifetime of the component.
  *
  * Tool handlers are held in a ref so they always see current React state
- * without forcing a re-registration on every render — an agent that discovered
+ * without forcing a re-registration on every render; an agent that discovered
  * `create_project` at page load keeps calling the same live handler.
  */
 export function useWebMCP(tools: ToolDefinition[]): WebMCPStatus & {

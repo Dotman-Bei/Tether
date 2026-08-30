@@ -5,7 +5,7 @@ import type { Category, Memory } from "./types";
  *
  * The build spec is explicit that embeddings are not worth hackathon time here:
  * the corpus is a handful of short, structured, user-authored statements, so
- * token overlap plus tag/category boosts is both accurate and explainable —
+ * token overlap plus tag/category boosts is both accurate and explainable,
  * and "explainable" matters, because the UI shows the user *why* a memory
  * matched.
  */
