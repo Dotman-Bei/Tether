@@ -137,9 +137,9 @@ participating experience can build on, with the person holding the keys.
 
 ## Field checklist before submitting
 
-- [ ] Live URL deployed and matching the recorded video (needs Supabase + Vercel)
-- [ ] Public repo: https://github.com/Dotman-Bei/Tether
-- [ ] MIT license detectable on the repo page
+- [x] Live URL deployed: https://tether-swart.vercel.app (Supabase driver verified 33/33 in production)
+- [x] Public repo: https://github.com/Dotman-Bei/Tether
+- [x] MIT license detectable on the repo page
 - [ ] YouTube video under 3 minutes, public, tested in a private window
-- [ ] Screenshots attached (see `public/screenshots/`)
+- [x] Screenshots captured (see `public/screenshots/`) — re-shoot if the UI changes
 - [ ] Description proofread against current behavior — no claim the code cannot back

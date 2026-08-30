@@ -5,7 +5,19 @@
 A shared memory layer for the agent-native web. Participating websites expose WebMCP tools that
 save, retrieve, update, and delete user context — while the human decides what persists.
 
+**[▶ Live demo](https://tether-swart.vercel.app)** · [Memory dashboard](https://tether-swart.vercel.app/dashboard) · [DesignLab](https://tether-swart.vercel.app/designlab) · [DevForge](https://tether-swart.vercel.app/devforge) · [Protocol](https://tether-swart.vercel.app/protocol)
+
 Built for the [WebMCP Challenge](https://webmcp.devpost.com).
+
+### See it in 30 seconds
+
+1. Open [DesignLab](https://tether-swart.vercel.app/designlab) and press **Run save_preference (all three)**
+2. Open [the dashboard](https://tether-swart.vercel.app/dashboard) — three memories are already there
+3. Open [DevForge](https://tether-swart.vercel.app/devforge), press **Run create_project** — it builds a
+   TypeScript / Dark / Compact project you never configured
+4. Delete the TypeScript memory in the dashboard, scaffold again — the language falls back to JavaScript
+
+Step 4 is the point: the memory is doing the work, not a hardcoded demo path.
 
 ---
 
@@ -194,6 +206,15 @@ SQL editor. The service-role key is never bundled into client code — `src/lib/
 
 Import the repository into Vercel, add the two environment variables, and deploy. No other
 configuration is required.
+
+The live deployment runs on Vercel with Supabase Postgres. Confirm the driver actually switched
+with `curl <your-url>/api/health` — it must report `{"status":"online","driver":"supabase"}`. If it
+says `in-memory`, an environment variable did not take, and memories will not survive between
+requests because serverless functions do not share process state.
+
+Use the **secret** / `service_role` key, never the publishable or `anon` key. RLS is enabled with no
+permissive policies, so a publishable key authenticates fine but reads zero rows and cannot write —
+which looks like a broken app rather than a misconfigured one.
 
 ## Demo flow
 
