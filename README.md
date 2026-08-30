@@ -102,7 +102,7 @@ identical handlers, and every resulting log line is stamped `MANUAL`. Tether nev
 
 ## WebMCP tools
 
-Nine tools across three surfaces. Each has a constrained input schema, predictable structured
+Ten tools across three surfaces. Each has a constrained input schema, predictable structured
 output, and a real product purpose.
 
 ### Tether — `src/components/surfaces/TetherControlPlane.tsx`
@@ -119,6 +119,7 @@ output, and a real product purpose.
 | Tool | Purpose |
 | --- | --- |
 | `save_preference` | Apply a design preference locally **and** write it to Tether |
+| `remember_preference` | Store any preference stated in free text, from DesignLab |
 | `get_preferences` | Read what DesignLab applied plus what Tether already knows |
 
 ### DevForge — `src/components/surfaces/DevForge.tsx`
@@ -255,7 +256,7 @@ instead, and every generated value traces back to the memory that produced it.
 
 ### 4. WebMCP tool registration
 
-The nine tools registered across the three surfaces, with the real `registerTool` adapter code.
+The ten tools registered across the three surfaces, with the real `registerTool` adapter code.
 
 ![WebMCP tool catalog and registration code](public/screenshots/4-webmcp-tools.png)
 

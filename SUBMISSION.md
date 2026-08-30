@@ -51,13 +51,13 @@ up, lock file and install command included.
 
 ## How WebMCP is used
 
-Nine tools across three surfaces, each with a constrained input schema, predictable structured
+Ten tools across three surfaces, each with a constrained input schema, predictable structured
 output, and a real product purpose.
 
 | Surface | Tools |
 | --- | --- |
 | Tether | `store_context`, `retrieve_context`, `update_context`, `delete_context` |
-| DesignLab | `save_preference`, `get_preferences` |
+| DesignLab | `save_preference`, `remember_preference`, `get_preferences` |
 | DevForge | `get_user_context`, `create_project`, `apply_preferences` |
 
 These are not thin wrappers over the API. `save_preference` changes what DesignLab renders.

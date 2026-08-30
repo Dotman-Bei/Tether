@@ -26,7 +26,21 @@ const SUGGESTIONS = [
   "I always write tests with Vitest",
 ];
 
-export function AddMemoryPanel({ onAdded }: { onAdded: () => void | Promise<void> }) {
+export function AddMemoryPanel({
+  onAdded,
+  source = "You",
+  title = "Teach Tether something",
+  description = "Add any context in your own words. DevForge will apply whatever it recognises.",
+  toolName = "store_context",
+}: {
+  onAdded: () => void | Promise<void>;
+  /** Which site is credited as having learned this. */
+  source?: string;
+  title?: string;
+  description?: string;
+  /** Named in the footer so the human path is traceable to a real tool. */
+  toolName?: string;
+}) {
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState("");
   const [category, setCategory] = useState<Category>("preference");
@@ -59,12 +73,12 @@ export function AddMemoryPanel({ onAdded }: { onAdded: () => void | Promise<void
         content: trimmed,
         category,
         tags: parsedTags,
-        source: "You",
+        source,
         confidence,
       });
 
       await logActivity({
-        channel: "TETHER",
+        channel: source.toUpperCase() === "YOU" ? "TETHER" : source.toUpperCase(),
         label: duplicate ? "duplicate ignored" : "memory added by user",
         detail: `"${memory.content}"`,
         origin: "manual",
@@ -99,10 +113,10 @@ export function AddMemoryPanel({ onAdded }: { onAdded: () => void | Promise<void
         </span>
         <span className="min-w-0 flex-1">
           <span className="block font-display text-base font-bold tracking-[-0.02em] text-white">
-            Teach Tether something
+            {title}
           </span>
           <span className="mt-0.5 block text-xs text-[#A1A1AA]">
-            Add any context in your own words. DevForge will apply whatever it recognises.
+            {description}
           </span>
         </span>
         <ChevronDown
@@ -216,7 +230,7 @@ export function AddMemoryPanel({ onAdded }: { onAdded: () => void | Promise<void
               {busy ? "Storing…" : "Store memory"}
             </Button>
             <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#3F3F46]">
-              same path as store_context · manual invocation
+              same path as {toolName} · manual invocation
             </span>
           </div>
         </form>

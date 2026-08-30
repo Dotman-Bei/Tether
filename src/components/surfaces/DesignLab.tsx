@@ -7,9 +7,11 @@ import { Button, Panel } from "@/components/ui/primitives";
 import { useWebMCP } from "@/hooks/useWebMCP";
 import { cn } from "@/lib/cn";
 import { createMemory, logActivity, searchMemories } from "@/lib/client";
+import { CATEGORIES } from "@/lib/types";
 import { DEMO_SCRIPT_PROMPT } from "@/lib/constants";
 import { toolError, toolResult, type ToolDefinition } from "@/lib/webmcp";
 
+import { AddMemoryPanel } from "./AddMemoryPanel";
 import { AgentConsole, consoleLine, type ConsoleLine } from "./AgentConsole";
 import { WebMCPBadge } from "./WebMCPBadge";
 
@@ -151,6 +153,7 @@ export function DesignLab({ embedded = false }: { embedded?: boolean }) {
   const [lines, setLines] = useState<ConsoleLine[]>([]);
   const [busy, setBusy] = useState(false);
   const [savedCount, setSavedCount] = useState(0);
+  const [noteCount, setNoteCount] = useState(0);
 
   const append = useCallback((line: ConsoleLine) => setLines((prev) => [...prev, line]), []);
 
@@ -274,6 +277,75 @@ export function DesignLab({ embedded = false }: { embedded?: boolean }) {
               status: "error",
             });
             return toolError(`DesignLab could not save those preferences: ${message}`);
+          } finally {
+            setBusy(false);
+          }
+        },
+      },
+      {
+        name: "remember_preference",
+        description:
+          "Remember an arbitrary preference or working convention the user states in their own words, and persist it to Tether from DesignLab. Use this for anything that is not one of DesignLab's built-in theme, density, or language settings — for example a preferred package manager, styling library, or framework.",
+        inputSchema: {
+          type: "object",
+          properties: {
+            content: {
+              type: "string",
+              description: "The preference, written as a complete statement.",
+            },
+            category: {
+              type: "string",
+              enum: [...CATEGORIES],
+              description: "Kind of context. Defaults to preference.",
+            },
+            tags: {
+              type: "array",
+              items: { type: "string" },
+              description: "Short lookup tags.",
+            },
+            confidence: { type: "number", description: "0-1 certainty." },
+          },
+          required: ["content"],
+        },
+        execute: async (args) => {
+          const text = String(args.content ?? "").trim();
+          if (text.length < 3) return toolError("Give me something to remember.");
+
+          setBusy(true);
+          try {
+            await logActivity({
+              channel: "WEBMCP",
+              label: "remember_preference",
+              detail: `"${text}"`,
+              origin: "agent",
+            });
+            const { memory, duplicate } = await createMemory({
+              content: text,
+              category: typeof args.category === "string" ? args.category : "preference",
+              tags: Array.isArray(args.tags) ? args.tags.map(String) : [],
+              source: SURFACE,
+              confidence: typeof args.confidence === "number" ? args.confidence : 0.9,
+            });
+            setNoteCount((count) => count + (duplicate ? 0 : 1));
+            append(
+              consoleLine(
+                "tool",
+                duplicate
+                  ? `Tether already knew: "${memory.content}"`
+                  : `Stored: "${memory.content}"`,
+                "remember_preference",
+              ),
+            );
+            return toolResult(
+              duplicate
+                ? `Tether already remembers "${memory.content}".`
+                : `Stored "${memory.content}" in Tether from DesignLab. Any participating site can retrieve it.`,
+              { memory, duplicate },
+            );
+          } catch (cause) {
+            return toolError(
+              `Could not store that: ${cause instanceof Error ? cause.message : "unknown error"}`,
+            );
           } finally {
             setBusy(false);
           }
@@ -465,6 +537,22 @@ export function DesignLab({ embedded = false }: { embedded?: boolean }) {
           supported={status.supported}
           accent="#818CF8"
         />
+      </div>
+
+      {/* Anything the built-in toggles cannot express ------------------- */}
+      <div className="mt-5">
+        <AddMemoryPanel
+          source={SURFACE}
+          toolName="remember_preference"
+          title="Teach DesignLab something else"
+          description="The toggles above cover theme, density, and language. Anything else — package manager, styling library, framework — goes here and lands in Tether just the same."
+          onAdded={() => setNoteCount((count) => count + 1)}
+        />
+        {noteCount > 0 ? (
+          <p className="mt-2 text-center font-mono text-[10px] uppercase tracking-[0.1em] text-signal-green">
+            {noteCount} free-form {noteCount === 1 ? "memory" : "memories"} written to Tether
+          </p>
+        ) : null}
       </div>
     </div>
   );

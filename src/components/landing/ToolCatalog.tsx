@@ -49,6 +49,14 @@ export const TOOL_CATALOG: CatalogTool[] = [
     output: "{ preferences, stored }",
   },
   {
+    name: "remember_preference",
+    surface: "DesignLab",
+    purpose:
+      "Remember an arbitrary preference stated in the user's own words — anything the built-in toggles cannot express.",
+    input: "{ content, category?, tags?, confidence? }",
+    output: "{ memory, duplicate }",
+  },
+  {
     name: "get_preferences",
     surface: "DesignLab",
     purpose: "Read what DesignLab has applied plus what Tether already knows.",

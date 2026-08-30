@@ -65,7 +65,7 @@ export default function ProtocolPage() {
             WEBMCP TECHNICAL ARCHITECTURE
           </SectionTag>
           <h1 className="mt-6 max-w-4xl font-display text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] text-white sm:text-6xl">
-            Nine tools, one contract, zero hidden state.
+            Ten tools, one contract, zero hidden state.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[#A1A1AA]">
             Tether exposes four memory tools of its own. Each participating site adds tools that do
