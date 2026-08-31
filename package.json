@@ -9,7 +9,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "node tests/api.test.mjs",
+    "test:live": "BASE_URL=https://tether-swart.vercel.app node tests/api.test.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",

@@ -90,6 +90,25 @@ Step 6 is the proof that the memory — not a hardcoded demo path — is doing t
 - **The store is pluggable**: Supabase Postgres when configured, otherwise a durable in-process
   driver so a fresh clone runs with zero environment variables.
 
+### What this MVP does and does not prove
+
+Worth stating plainly, because it is the first thing a careful reader should ask.
+
+DesignLab and DevForge are **routes in one Next.js app on one origin**. They share a session
+cookie and a backend. So this demo proves the *tool contract and the persistence layer* — that a
+site can expose real capabilities to an agent, that structured context written by one surface is
+retrievable and applicable by another, and that a person can govern all of it. It does **not**
+prove cross-origin identity, because there is no origin boundary to cross.
+
+That boundary is the genuinely hard part of shipping this for real: two independent domains cannot
+share a first-party cookie, so a production Tether needs an explicit per-site authorization step —
+the user granting `devforge.com` read access to their memory layer, the way OAuth scopes work
+today — plus per-site read/write scoping so a participating site sees only what it has been granted.
+
+That is deliberately out of scope for a hackathon MVP, and the build spec says as much: no OAuth
+integrations, no complex permission management. What is here is the layer underneath that consent
+model, and the consent model is the next thing to build, not an afterthought.
+
 ### WebMCP adapter
 
 Different WebMCP builds expose the model context differently, so
@@ -188,7 +207,26 @@ ideal for local demos and recording.
 npm run build        # production build
 npm run start        # serve the production build
 npm run typecheck    # tsc --noEmit
+npm test             # API + store suite (needs the app running)
+npm run test:live    # the same suite against the deployed URL
 ```
+
+### Tests
+
+[`tests/api.test.mjs`](tests/api.test.mjs) covers all 42 assertions across every route handler and,
+through them, whichever store driver is configured — creation and defaults, numeric coercion, tag
+round-tripping, the duplicate guard, list ordering and filters, ranked retrieval with match
+reasons, update persistence, input validation, 404s, activity logging, session isolation, delete,
+and reset. No test framework and no dependencies; Node 18+ is enough.
+
+Point it at a deployment to use it as a production smoke test:
+
+```bash
+BASE_URL=https://your-app.vercel.app npm test
+```
+
+It scopes everything to its own session cookie and cleans up after itself, so it is safe to run
+against a live deployment.
 
 ### Environment variables
 
