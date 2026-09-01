@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/cn";
 
+import { Logo } from "./Logo";
 import { Button } from "./primitives";
 
 const LINKS = [
@@ -25,14 +26,13 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#1C1C1C] bg-canvas/85 backdrop-blur-md">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-5 sm:px-8">
-        <div className="flex items-center gap-3">
-          <Link
-            href="/"
-            className="font-display text-xl font-extrabold tracking-tight text-white transition-opacity hover:opacity-80"
-          >
-            TETHER
-          </Link>
-        </div>
+        <Link
+          href="/"
+          aria-label="Tether home"
+          className="transition-opacity hover:opacity-80"
+        >
+          <Logo />
+        </Link>
 
         <div className="hidden items-center gap-1 lg:flex">
           {LINKS.map((link) => {
