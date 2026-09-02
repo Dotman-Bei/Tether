@@ -20,11 +20,14 @@ import { CATEGORIES, type Category, type Memory } from "@/lib/types";
 import { toolError, toolResult, type ToolDefinition } from "@/lib/webmcp";
 
 import { AddMemoryPanel } from "./AddMemoryPanel";
+import { EnvironmentNotice } from "./EnvironmentNotice";
 import { MemoryCard } from "./MemoryCard";
 import { MemoryDrawer } from "./MemoryDrawer";
 import { WebMCPBadge } from "./WebMCPBadge";
 
 const SURFACE = "Tether";
+const GATE_MESSAGE =
+  "Storing context is a WebMCP capability. Open Tether in the ChatGPT desktop app's browser, or Chrome 149+ with chrome://flags/#enable-webmcp-testing enabled.";
 
 function Metric({ label, value, tone }: { label: string; value: string; tone?: "orange" | "green" }) {
   return (
@@ -458,9 +461,15 @@ export function TetherControlPlane({ embedded = false }: { embedded?: boolean })
         </p>
       ) : null}
 
+      {status.checked && !status.supported ? <EnvironmentNotice className="mt-6" /> : null}
+
       {/* Human-authored memories -------------------------------------- */}
       <div className="mt-6">
-        <AddMemoryPanel onAdded={refresh} />
+        <AddMemoryPanel
+          onAdded={refresh}
+          disabled={!status.supported}
+          disabledReason={GATE_MESSAGE}
+        />
       </div>
 
       {/* Feed --------------------------------------------------------- */}

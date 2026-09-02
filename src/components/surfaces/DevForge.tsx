@@ -19,6 +19,7 @@ import {
 import { toolError, toolResult, type ToolDefinition } from "@/lib/webmcp";
 
 import { AgentConsole, consoleLine, type ConsoleLine } from "./AgentConsole";
+import { EnvironmentNotice } from "./EnvironmentNotice";
 import { WebMCPBadge } from "./WebMCPBadge";
 
 const SURFACE = "DevForge";
@@ -383,6 +384,8 @@ export function DevForge({ embedded = false }: { embedded?: boolean }) {
         </div>
         <WebMCPBadge status={status} surface="DevForge" />
       </div>
+
+      {status.checked && !status.supported ? <EnvironmentNotice className="mt-6" /> : null}
 
       <div className="mt-6 grid gap-5 lg:grid-cols-2">
         <div className="space-y-5">

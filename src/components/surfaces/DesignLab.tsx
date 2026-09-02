@@ -12,10 +12,13 @@ import { DEMO_SCRIPT_PROMPT } from "@/lib/constants";
 import { toolError, toolResult, type ToolDefinition } from "@/lib/webmcp";
 
 import { AddMemoryPanel } from "./AddMemoryPanel";
+import { EnvironmentNotice } from "./EnvironmentNotice";
 import { AgentConsole, consoleLine, type ConsoleLine } from "./AgentConsole";
 import { WebMCPBadge } from "./WebMCPBadge";
 
 const SURFACE = "DesignLab";
+const GATE_MESSAGE =
+  "Storing context is a WebMCP capability. Open Tether in the ChatGPT desktop app's browser, or Chrome 149+ with chrome://flags/#enable-webmcp-testing enabled.";
 
 /* ------------------------------------------------------------------ */
 /* Local design-studio state                                           */
@@ -471,6 +474,8 @@ export function DesignLab({ embedded = false }: { embedded?: boolean }) {
         <WebMCPBadge status={status} surface="DesignLab" />
       </div>
 
+      {status.checked && !status.supported ? <EnvironmentNotice className="mt-6" /> : null}
+
       <div className="mt-6 grid gap-5 lg:grid-cols-2">
         <Panel className="p-5">
           <div className="flex items-center justify-between gap-3">
@@ -518,9 +523,10 @@ export function DesignLab({ embedded = false }: { embedded?: boolean }) {
             size="md"
             className="mt-5 w-full"
             onClick={saveCurrent}
-            disabled={busy}
+            disabled={busy || !status.supported}
+            title={status.supported ? undefined : "Requires a WebMCP-capable browser"}
           >
-            Save these settings to Tether
+            {status.supported ? "Save these settings to Tether" : "Needs a WebMCP browser"}
           </Button>
           <p className="mt-2 text-center font-mono text-[10px] uppercase tracking-[0.1em] text-[#3F3F46]">
             runs save_preference · manual invocation
@@ -544,6 +550,8 @@ export function DesignLab({ embedded = false }: { embedded?: boolean }) {
         <AddMemoryPanel
           source={SURFACE}
           toolName="remember_preference"
+          disabled={!status.supported}
+          disabledReason={GATE_MESSAGE}
           title="Teach DesignLab something else"
           description="The toggles above cover theme, density, and language. Anything else — package manager, styling library, framework — goes here and lands in Tether just the same."
           onAdded={() => setNoteCount((count) => count + 1)}

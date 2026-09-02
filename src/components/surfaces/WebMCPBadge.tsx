@@ -79,9 +79,13 @@ export function WebMCPBadge({
                   </>
                 ) : (
                   <>
-                    Use the supported hackathon environment to run the agent demo. The controls on
-                    this page still execute the exact same tool handlers directly, and every
-                    invocation is labelled so nothing is mistaken for agent activity.
+                    Open Tether in the <strong className="text-white">ChatGPT desktop app</strong>
+                    &apos;s built-in browser, or in{" "}
+                    <strong className="text-white">Google Chrome 149+</strong> with{" "}
+                    <code className="font-mono text-accent-orange">
+                      chrome://flags/#enable-webmcp-testing
+                    </code>{" "}
+                    enabled. The tool controls stay disabled until then.
                   </>
                 )}
               </p>

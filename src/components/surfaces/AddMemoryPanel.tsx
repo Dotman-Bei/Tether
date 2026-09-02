@@ -32,6 +32,8 @@ export function AddMemoryPanel({
   title = "Teach Tether something",
   description = "Add any context in your own words. DevForge will apply whatever it recognises.",
   toolName = "store_context",
+  disabled = false,
+  disabledReason,
 }: {
   onAdded: () => void | Promise<void>;
   /** Which site is credited as having learned this. */
@@ -40,6 +42,9 @@ export function AddMemoryPanel({
   description?: string;
   /** Named in the footer so the human path is traceable to a real tool. */
   toolName?: string;
+  /** Set when the surface requires WebMCP and the browser does not provide it. */
+  disabled?: boolean;
+  disabledReason?: string;
 }) {
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState("");
@@ -146,6 +151,12 @@ export function AddMemoryPanel({
             className="mt-2 w-full resize-none rounded-lg border border-[#2E2E2E] bg-[#0A0A0A] px-3 py-2.5 text-sm text-white placeholder:text-[#3F3F46] outline-none transition-colors focus:border-accent-orange"
           />
 
+          {disabled && disabledReason ? (
+            <p className="mt-3 rounded-md border border-[rgba(245,158,11,0.3)] bg-[rgba(245,158,11,0.06)] px-3 py-2 text-xs leading-relaxed text-signal-amber">
+              {disabledReason}
+            </p>
+          ) : null}
+
           <div className="mt-2 flex flex-wrap gap-1.5">
             {SUGGESTIONS.map((suggestion) => (
               <button
@@ -226,8 +237,8 @@ export function AddMemoryPanel({
           ) : null}
 
           <div className="mt-4 flex items-center gap-3">
-            <Button type="submit" variant="primary" size="md" disabled={busy}>
-              {busy ? "Storing…" : "Store memory"}
+            <Button type="submit" variant="primary" size="md" disabled={busy || disabled}>
+              {busy ? "Storing…" : disabled ? "Needs a WebMCP browser" : "Store memory"}
             </Button>
             <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#3F3F46]">
               same path as {toolName} · manual invocation

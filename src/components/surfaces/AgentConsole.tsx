@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Copy, Play, Terminal } from "lucide-react";
+import { Check, Copy, Lock, Play, Terminal } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/primitives";
@@ -82,13 +82,20 @@ export function AgentConsole({
           <p className="mt-2 text-xs leading-relaxed text-[#52525B]">
             {supported
               ? `An agent in this browser can already see ${surface}'s tools. Ask it, and it will call them itself.`
-              : "No agent detected in this browser. The button below runs the exact same tool handler an agent would call; every log line is stamped MANUAL."}
+              : "Disabled here. Open Tether in the ChatGPT desktop app's browser, or in Chrome 149+ with chrome://flags/#enable-webmcp-testing enabled, to run this."}
           </p>
         </div>
 
-        <Button variant="primary" size="md" onClick={onRun} disabled={busy} className="w-full">
-          <Play className="h-4 w-4" aria-hidden />
-          {busy ? "Running tool…" : runLabel}
+        <Button
+          variant="primary"
+          size="md"
+          onClick={onRun}
+          disabled={busy || !supported}
+          className="w-full"
+          title={supported ? undefined : "Requires a WebMCP-capable browser"}
+        >
+          {supported ? <Play className="h-4 w-4" aria-hidden /> : <Lock className="h-4 w-4" aria-hidden />}
+          {busy ? "Running tool…" : supported ? runLabel : "Needs a WebMCP browser"}
         </Button>
 
         {lines.length > 0 ? (
